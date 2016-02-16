@@ -96,7 +96,7 @@ class Aliaster(object):
           continue
         strings.append(self._Print(cmd, cnt))
     else:
-      for cmd, cnt in sorted(self.aliaster.iteritems(), key=lambda t: t[1]):
+      for cmd, cnt in sorted(iter(self.aliaster.items()), key=lambda t: t[1]):
         if cnt < threshold:
           continue
         strings.append(self._Print(cmd, cnt))
@@ -128,10 +128,10 @@ def main(_, cmd, expanded_cnt):
   expanded_cnt = int(expanded_cnt or 0)
   game = Gamificalias()
   if cmd == 'aliaster':
-    print Aliaster()
+    print(Aliaster())
   elif expanded_cnt:
     game.Winning(cmd, expanded_cnt)
-    print game
+    print(game)
   else:
     Aliaster().Store(cmd)
   sys.exit(game.score)
